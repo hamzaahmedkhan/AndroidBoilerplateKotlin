@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import android.view.Gravity;
 import android.view.WindowManager;
@@ -94,8 +95,8 @@ public class MainActivity extends BaseActivity {
 
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
 
-            if (drawerLayout.isDrawerOpen(Gravity.START)) {
-                drawerLayout.closeDrawer(Gravity.START);
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
             } else {
                 super.onBackPressed();
                 List<Fragment> fragments = getSupportFragmentManager().getFragments();

@@ -130,7 +130,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/x1dp"
                 android:paddingTop="@dimen/x5dp"
-                android:text="Information Technology, Aga Khan University."
+                android:text="Boiler plate LLC"
                 android:textColor="@color/c_white"
                 android:textSize="@dimen/s10"
                 app:typeface="@string/font_medium" />
@@ -141,7 +141,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/x5dp"
                 android:paddingTop="@dimen/x1dp"
-                android:text="© Intellectual property rights 2018. All rights reserved."
+                android:text="© Boiler plate LLC"
                 android:textColor="@color/c_white"
                 android:textSize="@dimen/s10"
                 app:typeface="@string/font_medium" />

@@ -1,12 +1,15 @@
 package com.android.structure.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,6 +23,7 @@ import com.android.structure.fragments.abstracts.BaseFragment;
 import com.android.structure.R;
 
 import com.android.structure.fragments.abstracts.GenericDialogFragment;
+import com.android.structure.helperclasses.ui.helper.UIHelper;
 import com.android.structure.widget.TitleBar;
 
 
@@ -28,7 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected DrawerLayout drawerLayout;
     protected TitleBar titleBar;
     private LeftSideMenuFragment leftSideMenuFragment;
-    public BaseFragment baseFragment;
     public GenericClickableInterface genericClickableInterface;
 
     @Override
@@ -76,30 +79,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void closeApp() {
-        final GenericDialogFragment genericDialogFragment = GenericDialogFragment.newInstance();
 
-        genericDialogFragment.setTitle("Logout");
-        genericDialogFragment.setMessage(getString(R.string.areYouSureToLogout));
-        genericDialogFragment.setButton1("Yes", new GenericClickableInterface() {
+        UIHelper.showAlertDialog("Are you sure you want to quit your app?", "Quit", new DialogInterface.OnClickListener() {
             @Override
-            public void click() {
-                genericDialogFragment.dismiss();
-                baseFragment.sharedPreferenceManager.clearDB();
-                baseFragment.getBaseActivity().clearAllActivitiesExceptThis(MainActivity.class);
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                BaseActivity.this.finish();
             }
-        });
-
-        genericDialogFragment.setButton2("No", new GenericClickableInterface() {
+        }, "Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void click() {
-                genericDialogFragment.getDialog().dismiss();
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
-        });
-        genericDialogFragment.show(baseFragment.getBaseActivity().getSupportFragmentManager(), null);
+        }, "No", this);
     }
 
     public void addDockableFragment(Fragment fragment, boolean isTransition) {
-        baseFragment = (BaseFragment) fragment;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (isTransition) {
             fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);

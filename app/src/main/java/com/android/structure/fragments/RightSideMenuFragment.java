@@ -139,7 +139,7 @@ public class RightSideMenuFragment extends BaseFragment implements OnNewPacketRe
                 getBaseActivity().addDockableFragment(GenericContentFragment.newInstance("About", AppConstants.AboutUs), false);
                 break;
             case R.id.txtLogout:
-                logoutClick(this);
+                logoutClick();
                 break;
         }
     }

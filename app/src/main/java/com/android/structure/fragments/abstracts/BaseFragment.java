@@ -1,6 +1,7 @@
 package com.android.structure.fragments.abstracts;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.Nullable;
@@ -241,30 +242,20 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
 
 
-    public static void logoutClick(final BaseFragment baseFragment) {
-        Context context = baseFragment.getContext();
-
-        final GenericDialogFragment genericDialogFragment = GenericDialogFragment.newInstance();
-
-        genericDialogFragment.setTitle("Logout");
-        genericDialogFragment.setMessage(context.getString(R.string.areYouSureToLogout));
-        genericDialogFragment.setButton1("Yes", new GenericClickableInterface() {
+    public void logoutClick() {
+        UIHelper.showAlertDialog(getContext().getResources().getString(R.string.logout), "Logout", new DialogInterface.OnClickListener() {
             @Override
-            public void click() {
-                genericDialogFragment.dismiss();
-                baseFragment.sharedPreferenceManager.clearDB();
-                baseFragment.getBaseActivity().clearAllActivitiesExceptThis(MainActivity.class);
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                sharedPreferenceManager.clearDB();
+                getBaseActivity().clearAllActivitiesExceptThis(MainActivity.class);
             }
-        });
-
-        genericDialogFragment.setButton2("No", new GenericClickableInterface() {
+        }, "Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void click() {
-                genericDialogFragment.getDialog().dismiss();
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
-        });
-        genericDialogFragment.show(baseFragment.getBaseActivity().getSupportFragmentManager(), null);
-
+        },"No", getContext());
 
     }
 }

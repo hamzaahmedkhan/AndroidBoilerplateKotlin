@@ -119,8 +119,7 @@ public class AppConstants {
      * Data Static Strings
      */
 
-    public static String AboutUs = "<B>Family Hifazat</B> is a product of Aga Khan University Hospital Karachi. It provides discounts on medical services as well as patients’ access to their personal health records through web portal and mobile applications." + "<BR><BR>" +
-            "The <B>Family Hifazat</B> “Patient Portal” is secure, confidential and easy to use web portal &amp; mobile apps to provide AKUH patients 24 hour access to their personal health records including diagnostic results, imaging, medications, vaccines and discharge summaries.";
+    public static String AboutUs = "Boiler plate LLC about us";
 
     public static final String NO_RECORD_FOUND = "No Record Found";
 

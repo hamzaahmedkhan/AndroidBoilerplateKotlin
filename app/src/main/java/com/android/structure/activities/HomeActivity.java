@@ -6,6 +6,8 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import android.view.Gravity;
 import android.view.View;
@@ -149,8 +151,8 @@ public class HomeActivity extends BaseActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
 
-            if (drawerLayout.isDrawerOpen(Gravity.START)) {
-                drawerLayout.closeDrawer(Gravity.START);
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
             } else {
                 super.onBackPressed();
                 List<Fragment> fragments = getSupportFragmentManager().getFragments();

@@ -141,7 +141,7 @@ public class LeftSideMenuFragment extends BaseFragment implements OnNewPacketRec
                 getBaseActivity().addDockableFragment(GenericContentFragment.newInstance("About", AppConstants.AboutUs), false);
                 break;
             case R.id.txtLogout:
-                logoutClick(this);
+                logoutClick();
                 break;
         }
     }
